@@ -1,0 +1,80 @@
+"""
+uniqueness
+
+[ h e l l o ]
+
+
+How would you decode?
+> Any value is ASCII
+
+> could add a character in front to determine how many characters is between each string
+
+> when you decode you use this to determine the length of the encoded string
+
+"""
+
+class Solution:
+
+    def _front(self, num:int):
+        return str(num) + "_"
+
+    def encode(self, strs: List[str]) -> str:
+        
+        # total = 0
+
+        # # Get total character count
+        # for s in strs:
+        #     total += len(s)
+
+        # number + _  -->  50_  4_abcd
+
+        # ret = str(total)+"_"
+        ret = ""
+
+        for s in strs:
+            ret = ret + self._front(len(s)) + s    
+
+        print(ret)
+        return ret
+
+    def decode(self, s: str) -> List[str]:
+        
+        # i = 0
+        # total = ""
+
+        # # find total
+        # while i < len(s) and s[i] != "_":
+        #     total += s[i]
+        #     i+=1
+
+        # totaln = int(total)
+
+        # decode string
+        ret = list()
+        j = 0
+
+
+        # 50_  4_abcd
+
+        while j < len(s):
+            # determine length of string: ls
+            n = ""
+            while j < len(s) and s[j] != "_":
+                n += s[j]
+                j+=1
+            # print(n)
+            j+=1 # Start on the first letter
+            nnum = int(n)
+            word = ""
+            # read in the string; count < nnum
+            while j < len(s) and nnum > 0:
+                word += s[j]
+                j+=1
+                nnum -=1
+            print(word)
+            ret.append(word)
+        return ret
+
+
+
+
